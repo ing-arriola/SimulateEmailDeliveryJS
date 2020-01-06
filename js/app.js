@@ -17,10 +17,18 @@ function AppStart (){
 }
 //Function to validate Field
 function validateField(){
+
     validateLong(this)
-
-    if(email.value !== '' && asunto.value !== ' ' && mensaje.value !== ' '){
-
+    //Validating if the field email has a @ character
+    if(this.type === 'email'){
+        validateEmail(this)
+    }
+    
+    let errores = document.querySelectorAll('.error')
+    if(email.value !== '' && asunto.value !== '' && mensaje.value !== ''){
+        if (errores.length === 0){
+            btnEnviar.disabled=false
+        }
     }
 
 
@@ -35,5 +43,19 @@ const validateLong = (field) => {
     }else{
         field.style.borderBottomColor='red'
         field.classList.add('error')
+    }
+}
+
+//this function get the value of the email field and it looking for a "@" character ...
+//If the field has a "@" then is colored as green and the error is cleaned... but
+//else if the field has no a "@" the field is colored as red an error is added
+const validateEmail = (email) => {
+    const field=email.value
+    if(field.indexOf('@') !== -1){
+        email.style.borderBottomColor='green'
+        email.classList.remove('error')
+    }else{
+        email.style.borderBottomColor='red'
+        email.classList.add('error')
     }
 }
