@@ -64,7 +64,11 @@ function sendEmail(e){
 
 }
 
-
+//This function reset the form
+function resetForm(e){
+    e,preventDefault()
+    emailForm.reset()
+}
 
 //Arrow functions that add styles to the fields depending if it has a value or is empty
 const validateLong = (field) => {
